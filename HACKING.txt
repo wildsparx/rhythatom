@@ -1,0 +1,54 @@
+General
+  * Final product is index.html + main.css
+  * pre.html is the pre-processing web page; it @includes *.inc
+  * @include can have params, as in chord_row.inc
+  * The G object is the root; defined in pre.html
+
+Main: metro.inc
+
+GUI:
+  chui.inc
+  cnvui.inc
+  chord_row.inc
+  fader_row.inc
+
+Chord scheduling: chorder.inc
+Music theory: mu.inc
+Audio output: snd.inc
+
+Timing/Sync
+
+The app gets a periodic callback from the browser, good enough to
+animate video games. However its high jitter and high granularity make it
+impossible to play a rock steady beat. The solution is to schedule notes
+slightly into the future. (Thanks to Chris Wilson). Unfortunately we
+also have to schedule the UI events into the future to match; for example
+lighting up the green lights in the CHORDS panel as we advance through
+the chords.
+
+We have two queues of future events:
+    UI:                G.chui.tic_times - just future timestamps
+    1/16 note display: G.cnvui.note_queue - timestamps + beat number 0-15
+
+Audio is queued by creating a Source and setting its start time in the
+future. So we create a new source for every note.
+
+Basic timing flow:
+
+        +-------+ TIC   +-------+ SCHED +-------+
+        |METRO  |------>|CHORDER|------>|SND    |
+        |       |       +-------+       |       |
+        |SCHED  |     SCHED SNARE       |       |
+        |NOTE   |---------------------->|       |
+Timer   |       |                       +-------+
+    --->|       |                                
+Callback|       | ENQUEUE TIC           +-------+
+        |       |-------------+-------->|CNVUI  |
+        |       |             |         +-------+
+        |       |             |         +-------+
+        |       |             +-------->|CHUI   |
+        +-------+                       +-------+
+
+Tic = 1/16th note.
+
+

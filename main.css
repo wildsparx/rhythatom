@@ -1,0 +1,294 @@
+.chords {
+  padding: 5px;
+}
+
+.main_frame {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background: #434c51;
+  width: 900px;
+  padding-top: 25px;
+  padding-bottom: 5px;
+  height: 530px;
+}
+
+#main_title {
+  font-size: 24px;
+  letter-spacing: 10px;
+  width: 200px;
+  margin: auto;
+}
+
+/* centered at bottom */
+#copyright {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  margin-left:-200px;
+  width:400px;
+  text-align: center;
+}
+
+
+#left_side {
+  float: left;
+}
+
+#rhythm_panel {
+  position: absolute;
+  top: 50px;
+  left: 8px;
+  height: 205px;
+}
+
+#expression_panel {
+  position: absolute;
+  bottom: 10px;
+  left: 8px;
+  height: 205px;
+}
+
+#chords_panel {
+  position: absolute;
+  top: 50px;
+  right: 8px;
+  height: 446px;
+}
+
+/* values the user can tweak */
+.variable {
+  font-size: 14px;
+  /* color: #d9f2f6; */
+  /* background: #434c51; */
+  background: #020;
+  color: #afa;
+  padding: 4px;
+  margin-bottom: 10px;
+  margin-left: 8px;
+  margin-right: 8px;
+  text-align: right;
+}
+
+canvas {
+  border: 1px solid black;
+  width: 200px;
+  margin-left: 100px;
+  margin-bottom: 20px;
+}
+
+.fader_label {
+  text-align: right;
+}
+
+.cnv_container {
+  width: 80%;
+  margin: auto;
+  background: #f00;
+}
+
+
+.xplay {
+  background: #4d3d45;
+  padding: 5px;
+  font-size:12px;
+  border: 1px solid black;
+}
+
+.chords td {
+  padding: 4px;
+  text-align: center;
+  color: #d9e2e6;
+  font-family: Monospace, Tahoma, Geneva, sans-serif; 
+  font-size:10px;
+}
+
+select {
+  background: #596267;
+  color: #d9e2e6;
+  border-color: #000;
+  font-family: Monospace, Tahoma, Geneva, sans-serif; 
+  font-size:12px;
+}
+
+.panel {
+  width: 400px;
+  margin: 15px;
+  padding: 10px;
+  background: #5f686d;
+  border: 5px;
+  margin-bottom:20px;
+}
+
+.panel h2 {
+  margin-top:0px;
+  color: #d9e2e6;
+  font-family: Monospace, Tahoma, Geneva, sans-serif; 
+  font-size: 16px;
+  text-align: center;
+}
+
+#controls {
+	font-family:arial;
+	font-size:24px;
+	font-weight:bold;
+	margin: 15px;
+}
+
+#controls * {
+	margin: 5px;
+	display:inline-block;
+	
+}
+
+.play {
+	-moz-box-shadow:inset 0px 20px 26px 0px #b6cde3;
+	-webkit-box-shadow:inset 0px 20px 26px 0px #b6cde3;
+	box-shadow:inset 0px 20px 26px 0px #b6cde3;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+	background:-moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+	background-color:#79bbff;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px;
+	color:#ffffff;
+	padding:8px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 6px #000000;
+	width: 80px;
+	text-align: center;
+}
+
+.play:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+	background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+	background-color:#378de5;
+}
+
+.play:active {
+	position:relative;
+	top:1px; left: 1px;
+}
+
+#showTempo { 
+	display: inline-block;
+	width: 45px; 
+}
+
+#showStrumTime { 
+	display: inline-block;
+	width: 65px; 
+}
+
+#showSwing { 
+	display: inline-block;
+	width: 40px; 
+}
+
+* {
+    -webkit-user-select: none;
+}
+
+
+body, html {
+    margin: 0;
+    height: 100%;
+    position: relative;
+    color: #d9e2e6;
+    font-family: Monospace, Tahoma, Geneva, sans-serif; 
+    font-size: 10px;
+    letter-spacing: 1.3pt;
+}
+body {
+    overflow: auto;
+}
+
+/* ******************************** */
+/* http://danielstern.ca/range.css/#/ */
+
+input[type=range].fader {
+  -webkit-appearance: none;
+  width: 200px;
+  margin: 9.45px 0;
+}
+input[type=range].fader:focus {
+  outline: none;
+}
+input[type=range].fader::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1.1px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
+  background: #000000;
+  border-radius: 0px;
+  border: 0px solid rgba(1, 1, 1, 0);
+}
+input[type=range].fader::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  border: 1px solid #000000;
+  height: 20px;
+  width: 19px;
+  border-radius: 0px;
+  background: #596267;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -9.45px;
+}
+input[type=range].fader:focus::-webkit-slider-runnable-track {
+  background: #0d0d0d;
+}
+input[type=range].fader::-moz-range-track {
+  width: 100%;
+  height: 1.1px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
+  background: #000000;
+  border-radius: 0px;
+  border: 0px solid rgba(1, 1, 1, 0);
+}
+input[type=range].fader::-moz-range-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  border: 1px solid #000000;
+  height: 20px;
+  width: 19px;
+  border-radius: 0px;
+  background: #596267;
+  cursor: pointer;
+}
+input[type=range].fader::-ms-track {
+  width: 100%;
+  height: 1.1px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range].fader::-ms-fill-lower {
+  background: #000000;
+  border: 0px solid rgba(1, 1, 1, 0);
+  border-radius: 0px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
+}
+input[type=range].fader::-ms-fill-upper {
+  background: #000000;
+  border: 0px solid rgba(1, 1, 1, 0);
+  border-radius: 0px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
+}
+input[type=range].fader::-ms-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  border: 1px solid #000000;
+  height: 20px;
+  width: 19px;
+  border-radius: 0px;
+  background: #596267;
+  cursor: pointer;
+  height: 1.1px;
+}
+input[type=range].fader:focus::-ms-fill-lower {
+  background: #000000;
+}
+input[type=range].fader:focus::-ms-fill-upper {
+  background: #0d0d0d;
+}
+

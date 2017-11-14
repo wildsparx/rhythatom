@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width user-scalable=no">
+    <title>Metronome</title>
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript">
+
+G = {
+  nchords: 6,
+  strum_style: 'UP',
+  strum_qn: 0,
+  waveform: 'TRI',
+  orange: 150,
+  sustain: 0.5,
+  bpm: 120,
+  percussion_vol: 0.2,
+  is_playing: false,
+  cur_16th_note: 0,
+  schedule_ahead_secs: 0.1,
+  next_note_time: 0.0,
+  note_res: 0,     // 0 == 16th, 1 == 8th, 2 == quarter note
+
+};
+
+@include(cnvui.inc)
+@include(snd.inc)
+@include(chui.inc)
+@include(mu.inc)
+@include(chorder.inc)
+@include(metro.inc)
+    </script>
+  </head>
+  <body bgcolor="#334">
+    <div class="main_frame">
+    <div id="main_title">RHYTHATOM</div>
+    <div class="panel" id="rhythm_panel">
+    <h2>RHYTHM</h2>
+      <div style="cnv_container">
+        <canvas id="cnv" width="200" height="20">
+        This text is displayed if your browser does not support HTML5 Canvas.
+        </canvas>
+      </div>
+    <table>
+@include(fader_row.inc "label": "BPM", "key":"bpm", "min":30, "max":220, "default":120, "step":1, "places": 0)
+@include(fader_row.inc "label": "PERCUSSION", "key":"percussion_vol", "min":0, "max":1, "default":"0.20", "step":0.01, "places": 2)
+
+      <tr>
+
+      <td align="right">RESOLUTION</td>
+      <td></td>
+      <td><select onchange="G.note_res = this.selectedIndex;"><option>16th notes<option>8th notes<option>Quarter notes</select></td>
+      </tr>
+
+
+      <tr>
+      <td></td>
+      <td style="padding-top:18px;"><a class="xplay" onclick="this.innerText = on_play();">PLAY</a></td>
+      <td colspan=2></td>
+      </tr>
+
+    </table>
+    </div>
+
+
+<div class="panel" id="expression_panel">
+<h2>EXPRESSION</h2>
+
+<table>
+@include(fader_row.inc "label": "STRUM QN", "key":"strum_qn", "min":0, "max":1, "default":0, "step":0.01, "places": 2)
+@include(fader_row.inc "label": "SUSTAIN QN", "key":"sustain", "min":0, "max":1, "default":"0.50", "step":0.01, "places": 2)
+<tr>
+<td class="fader_label">STRUM</td>
+<td></td>
+<td>
+<select onchange="G.strum_style = this.value;">
+<option>UP</option>
+<option>DOWN</option>
+<option>UP/DOWN</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td class="fader_label">WAVEFORM</td>
+<td></td>
+<td>
+<select onchange="G.waveform = this.value;">
+<option>TRI</option>
+<option>SIN</option>
+<option>SQ</option>
+<option>SAW</option>
+</select>
+</td>
+</tr>
+</table>
+
+</div>
+
+
+
+<div class="panel" id="chords_panel">
+<h2>CHORDS</h2>
+<table align="center" class="chords">
+<tr><td></td><td>BEATS</td><td>DEGREE</td><td>ACC</td><td>QUALITY</td><td>OCTAVE</td></tr>
+@include(chord_row.inc "row_num":0)
+@include(chord_row.inc "row_num":1)
+@include(chord_row.inc "row_num":2)
+@include(chord_row.inc "row_num":3)
+@include(chord_row.inc "row_num":4)
+@include(chord_row.inc "row_num":5)
+</table>
+</div>
+<div id="copyright">(C) 2017 ASHER BLUM</div>
+</div> <!-- /main_frame -->
+
+   </body>
+</html>
