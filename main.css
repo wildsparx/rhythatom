@@ -84,7 +84,8 @@ canvas {
 .cnv_container {
   width: 80%;
   margin: auto;
-  background: #f00;
+  height: 30px;
+  text-align: center;
 }
 
 
