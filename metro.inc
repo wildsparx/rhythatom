@@ -72,14 +72,18 @@ function on_play() {
     G.is_playing = !G.is_playing;
 
     if (G.is_playing) { // start playing
-        G.cur_16th_note = 0;
         G.next_note_time = G.actx.currentTime;
-        return "STOP";
+        return "PAUSE";
     } else {
-        G.chui.reset();
-        G.chorder.reset();
         return "PLAY";
     }
+}
+
+/* clicked RST button */
+function on_rst() {
+    G.cur_16th_note = 0;
+    G.chui.reset();
+    G.chorder.reset();
 }
 
 /* Gets called frequently, roughly 60/second */
