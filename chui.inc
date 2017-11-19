@@ -29,6 +29,28 @@ G.chui.set_defaults = function() {
   }
 };
 
+G.chui.serialize_a = function(ser) {
+  var cas = G.chui.chord_attrs;
+  for(var cn=0; cn<G.nchords; cn++) {
+    for(var i=0; i<cas.length; i++) {
+      var ca = cas[i];
+      var id = "chord_" + ca + "_" + cn;
+      ser.write_select(id);
+    }
+  }
+};
+
+G.chui.deserialize_a = function(ser) {
+  var cas = G.chui.chord_attrs;
+  for(var cn=0; cn<G.nchords; cn++) {
+    for(var i=0; i<cas.length; i++) {
+      var ca = cas[i];
+      var id = "chord_" + ca + "_" + cn;
+      ser.read_select(id);
+    }
+  }
+};
+
 /* Given an index 0,1,... return chord object */
 
 G.chui.get_chord = function(i) {

@@ -97,6 +97,46 @@ function on_timer() {
     requestAnimFrame(on_timer);
 }
 
+/* Serialize all UI params in scheme "a" */
+function serialize_a() {
+  G.pser.reset();
+  G.pser.write_range("fader_bpm");
+  G.pser.write_range("fader_percussion_vol");
+  G.pser.write_range("fader_strum_qn");
+  G.pser.write_range("fader_sustain");
+  G.pser.write_select("note_res_select");
+  G.pser.write_select("strum_style_select");
+  G.pser.write_select("waveform_select");
+  G.chui.serialize_a(G.pser);
+}
+
+/* Deserialize all UI params in scheme "a" */
+function deserialize_a() {
+  G.pser.read_range("fader_bpm");
+  G.pser.read_range("fader_percussion_vol");
+  G.pser.read_range("fader_strum_qn");
+  G.pser.read_range("fader_sustain");
+  G.pser.read_select("note_res_select");
+  G.pser.read_select("strum_style_select");
+  G.pser.read_select("waveform_select");
+  G.chui.deserialize_a(G.pser);
+}
+
+/* If the URL has a valid "hash" read it and set params
+   ex: #avIxhAgCIEgyAgAAEAA==
+*/
+function try_deserialize_hash() {
+  var h = window.location.hash;
+  if(h.length < G.pser.ser_len) {
+    return;
+  }
+  /* serialization "a" */
+  if(h[0] == '#' && h[1] == 'a') {
+    G.pser.from_b64(h.substring(2));
+    deserialize_a();
+  }
+}
+
 
 /* React to change in UI controls */
 
@@ -107,6 +147,8 @@ G.onchange = function() {
     G.chords[i] = G.chui.get_chord(i);
     G.chords[i].freqs = G.mu_simple_chord_freqs(G.chords[i].deg, G.chords[i].qual);
   }
+  serialize_a();
+  window.location.hash = 'a' + G.pser.to_b64();
 };
 
 function init(){
@@ -114,6 +156,7 @@ function init(){
     G.snd.init();
     G.chui.set_defaults();
     G.chui.hilite_chord(0);
+    try_deserialize_hash();
     G.onchange();
     requestAnimFrame(on_timer);    // start the drawing loop.
 }

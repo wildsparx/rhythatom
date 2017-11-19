@@ -24,6 +24,7 @@ G = {
 
 };
 
+@include(pser.inc)
 @include(cnvui.inc)
 @include(snd.inc)
 @include(chui.inc)
@@ -50,7 +51,7 @@ G = {
 
       <td align="right">RESOLUTION</td>
       <td></td>
-      <td><select onchange="G.note_res = this.selectedIndex;"><option>16th notes<option>8th notes<option>Quarter notes</select></td>
+      <td><select id="note_res_select" onchange="G.note_res = this.selectedIndex; G.onchange();"><option>16th notes<option>8th notes<option>Quarter notes</select></td>
       </tr>
 
 
@@ -75,7 +76,7 @@ G = {
 <td class="fader_label">STRUM</td>
 <td></td>
 <td>
-<select onchange="G.strum_style = this.value;">
+<select id="strum_style_select" onchange="G.strum_style = this.value; G.onchange();">
 <option>UP</option>
 <option>DOWN</option>
 <option>UP/DOWN</option>
@@ -87,7 +88,7 @@ G = {
 <td class="fader_label">WAVEFORM</td>
 <td></td>
 <td>
-<select onchange="G.waveform = this.value;">
+<select id="waveform_select" onchange="G.waveform = this.value; G.onchange();">
 <option>TRI</option>
 <option>SIN</option>
 <option>SQ</option>
