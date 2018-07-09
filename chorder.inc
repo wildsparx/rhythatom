@@ -12,7 +12,7 @@ G.chorder.reset = function() {
 G.chorder.schedule_chord = function(time, strum_style) {
   var c = G.chorder;
   var noteLength = 2.0 * G.sustain * 60.0 / G.bpm; // quarter note - up to 1/2 note
-  var freqs = G.mu_simple_root_chord_freqs(G.chords[c.chord_no].deg, G.chords[c.chord_no].qual);
+  var freqs = G.mu_simple_root_chord_freqs(G.chords[c.chord_no].deg, G.chords[c.chord_no].qual, G.chords[c.chord_no].sharp);
 
   var oct = G.chords[c.chord_no].oct;
   var r = (oct == '-1') ? 0.5 :

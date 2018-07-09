@@ -145,7 +145,7 @@ G.onchange = function() {
   G.chords = new Array(G.nchords);
   for(var i=0; i<G.nchords; i++) {
     G.chords[i] = G.chui.get_chord(i);
-    G.chords[i].freqs = G.mu_simple_chord_freqs(G.chords[i].deg, G.chords[i].qual);
+    G.chords[i].freqs = G.mu_simple_chord_freqs(G.chords[i].deg, G.chords[i].qual, G.chords[i].sharp);
   }
   serialize_a();
   window.location.hash = 'a' + G.pser.to_b64();
