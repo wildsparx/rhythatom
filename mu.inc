@@ -65,11 +65,9 @@ G.mu_simple_root_chord_freqs = function(sd, quality, sharpness) {
   var root_nn = G.mu_scale_deg_to_notenum[sd];
 
   if(sharpness == 'sharp') {
-    console.log("mu_simple_chord_freqs: iam sharp");
     root_nn ++;
   }
   else if(sharpness == 'flat') {
-    console.log("mu_simple_chord_freqs: iam flat");
     root_nn --;
   }
 
